@@ -87,7 +87,7 @@ class MainWindow(QtWidgets.QMainWindow):
         #Load the UI Page
         uic.loadUi('robot.ui', self)
         try:
-            SerialNumber = "55438303439351107140" #zAxis serial number. 
+            SerialNumber = "757353036313511191B2" #zAxis serial number. 
             BAUD_RATE = 500000
             self.arduino = usbCommunication(SerialNumber, BAUD_RATE)
         except Exception as e:
@@ -108,14 +108,14 @@ class MainWindow(QtWidgets.QMainWindow):
         # timer for handling slider to set Velocity Limits
         self.timer = QTimer()
         self.timer.setInterval(100)
-        self.timer.timeout.connect(self.checkAnalogValue)
+        # self.timer.timeout.connect(self.checkAnalogValue)
         # self.timer.start()
-        self.startWorkers()
+        # self.startWorkers()
 
-    def startWorkers(self):
-        worker_checkAnalogValue = Worker(self.checkAnalogValue)
-        self.threadpool.start(worker_checkAnalogValue)
-        worker_checkAnalogValue.signals.finished.connect(self.startWorkers)
+    # def startWorkers(self):
+    #     worker_checkAnalogValue = Worker(self.checkAnalogValue)
+    #     self.threadpool.start(worker_checkAnalogValue)
+    #     worker_checkAnalogValue.signals.finished.connect(self.startWorkers)
 
     def dialChange(self):
         # print(self.dial.value())
@@ -131,38 +131,38 @@ class MainWindow(QtWidgets.QMainWindow):
         self.arduino.sendMessage(msg) 
         # self.arduino.readMessage()
 
-    def meassurePin(self,pin):
-        self.arduino.sendMessage(pin)
-        msg = self.arduino.returnMessage()
-        print("msg=",msg)
-        msg = self.arduino.returnMessage()
-        print("msg=",msg)
-        try:
-            msg2=int(msg)   
-            return msg2*5/1023         
-            # print("msg2=",msg2)
-        except Exception as exp:
-            print(exp)
+    # def meassurePin(self,pin):
+    #     self.arduino.sendMessage(pin)
+    #     msg = self.arduino.returnMessage()
+    #     print("msg=",msg)
+    #     msg = self.arduino.returnMessage()
+    #     print("msg=",msg)
+    #     try:
+    #         msg2=int(msg)   
+    #         return msg2*5/1023         
+    #         # print("msg2=",msg2)
+    #     except Exception as exp:
+    #         print(exp)
         
 
-    def checkAnalogValue(self):
-        self.arduino.readMessage()
-        self.lcdA1.display(self.meassurePin("A1"))
-        # self.arduino.sendMessage("A1\r\n") 
-        # time.sleep(0.1)
-        # msg = self.arduino.returnMessage()
-        # print("msg=",msg)
-        # if (msg == "A1"):
-        #     msg = self.arduino.returnMessage()
-        #     print("msg1=",msg)
-        #     # print(type(msg))
-        #     try:
-        #         msg2=int(msg)
-        #         self.lcdA1.display((msg2*5/1023))
-        #         # print("msg2=",msg2)
-        #     except Exception as exp:
-        #         print(exp)
-        time.sleep(0.2)
+    # def checkAnalogValue(self):
+    #     self.arduino.readMessage()
+    #     self.lcdA1.display(self.meassurePin("A1"))
+    #     # self.arduino.sendMessage("A1\r\n") 
+    #     # time.sleep(0.1)
+    #     # msg = self.arduino.returnMessage()
+    #     # print("msg=",msg)
+    #     # if (msg == "A1"):
+    #     #     msg = self.arduino.returnMessage()
+    #     #     print("msg1=",msg)
+    #     #     # print(type(msg))
+    #     #     try:
+    #     #         msg2=int(msg)
+    #     #         self.lcdA1.display((msg2*5/1023))
+    #     #         # print("msg2=",msg2)
+    #     #     except Exception as exp:
+    #     #         print(exp)
+    #     time.sleep(0.2)
         
         # self.lcdNumber.display(2)
 

@@ -1,0 +1,6 @@
+{
+    "programmer": "AVR ISP",
+    "board": "arduino:avr:uno",
+    "sketch": "MoveDegrees\\MoveDegrees.ino",
+    "port": "COM3"
+}

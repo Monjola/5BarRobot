@@ -10,7 +10,7 @@ int microstepping_factor = 32;
 String msg;
 
 void setup(){  
-  Serial.begin(9600);
+  Serial.begin(500000);
   stepper.setMaxSpeed(1800);
   stepper.setAcceleration(1800000);
   stepper2.setMaxSpeed(1800);
