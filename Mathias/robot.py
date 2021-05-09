@@ -112,10 +112,25 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.timer.start()
         # self.startWorkers()
 
+        ## Måns
+        self.pushButton_sendDegrees1.clicked.connect(self.sendDegrees)
+        #self.pushButton_sendDegrees2.clicked.connect(lambda: self.sendDegrees(2))
     # def startWorkers(self):
     #     worker_checkAnalogValue = Worker(self.checkAnalogValue)
     #     self.threadpool.start(worker_checkAnalogValue)
     #     worker_checkAnalogValue.signals.finished.connect(self.startWorkers)
+
+    def sendDegrees(self):
+        stepper_0_angle=self.spinBox.value()
+        stepper_1_angle=self.spinBox_2.value()
+        angle_value_list = [str(stepper_0_angle),str(stepper_1_angle)]    
+        send_string = ','.join(angle_value_list)
+        send_string += "\n"
+
+        self.lcdA1.display(self.spinBox.value())
+
+        self.lcdA2.display(self.spinBox_2.value())
+        
 
     def dialChange(self):
         # print(self.dial.value())

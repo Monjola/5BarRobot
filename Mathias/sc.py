@@ -22,6 +22,10 @@ class usbCommunication():
     def sendMessage(self, msg):
         self.ser.write(msg.encode('utf-8'))
 
+    def sendInt(self,msg):
+        self.ser.write(msg)
+        
+
 	#Output: Confirms whats has been sent
 	# if input NOT understood it reports that aswell
     def readMessage(self):

@@ -13,12 +13,29 @@ int ppr = 200;
 int microstepping_factor = 32;
 String msg;
 
-int parseMessage(String msg, int number)
-{
-  msg.remove(0, number);
 
-  return msg.toInt();
-}
+
+
+//int parseLongMessage(String msg, int number)
+//{
+//  char str[40];
+//  msg.toCharArray(str,40);
+//  int init_size = strlen(str);
+//  char delim[] = " ";
+//  char arr[][40] ={};
+//  int index = 0;
+//  char *ptr = strtok(str, delim);
+//
+//  while(ptr != NULL)
+//  {
+//    printf("'%s'\n", ptr);
+//    arr[index][0] = *ptr;
+//    index++;
+//    ptr = strtok(NULL, delim);
+//  }
+//  String returnMsg = *arr[1];
+//  return (int) returnMsg;
+//}
 
 int angleToPulses(int angle) {
   float pulsecommand = (float(ppr) / 360) * microstepping_factor * angle;
@@ -70,7 +87,9 @@ void loop() {
           Serial.print(pos);
           break;
         case 'b': //command/both-motors
-          pos = parseMessage(msg, 2);
+          //Serial.print(msg);
+          //pos = parseLongMessage(msg, 2);
+          //Serial.print(pos);
           //TODO
           break;
       }
